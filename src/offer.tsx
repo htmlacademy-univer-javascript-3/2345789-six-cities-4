@@ -207,11 +207,11 @@ function OfferScreen(): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <CardArticle price={120} isInBookmarks={false} roomName={'Beautiful &amp; luxurious apartment at great location'} roomType="Apartment"></CardArticle>
-              <CardArticle price={80} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
-              <CardArticle price={132} isInBookmarks={false} roomName={'Canal View Prinsengracht'} roomType="Apartment"></CardArticle>
-              <CardArticle price={180} isInBookmarks={false} roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
-              <CardArticle price={80} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
+              <CardArticle price={'120'} isInBookmarks={false} roomName={'Beautiful &amp; luxurious apartment at great location'} roomType="Apartment"></CardArticle>
+              <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
+              <CardArticle price={'132'} isInBookmarks={false} roomName={'Canal View Prinsengracht'} roomType="Apartment"></CardArticle>
+              <CardArticle price={'180'} isInBookmarks={false} roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
+              <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
             </div>
           </section>
         </div>

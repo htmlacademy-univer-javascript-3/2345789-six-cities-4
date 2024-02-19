@@ -1,4 +1,11 @@
-function CardArticle(props: any): JSX.Element {
+type CardProps = {
+    price: string;
+    isInBookmarks: boolean;
+    roomName: string;
+    roomType: string;
+}
+
+function CardArticle(props: CardProps): JSX.Element {
   let bookmark;
   if (props.isInBookmarks) {
     bookmark = 'In bookmarks';

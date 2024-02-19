@@ -20,8 +20,8 @@ function FavoutiteScreen (): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <CardArticle price={180} isInBookmarks roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
-                  <CardArticle price={80} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
+                  <CardArticle price={'180'} isInBookmarks roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
+                  <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
                 </div>
               </li>
 
@@ -34,7 +34,7 @@ function FavoutiteScreen (): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <CardArticle price={180} isInBookmarks roomName={'White castle'} roomType="Apartment"></CardArticle>
+                  <CardArticle price={'180'} isInBookmarks roomName={'White castle'} roomType="Apartment"></CardArticle>
                 </div>
               </li>
             </ul>

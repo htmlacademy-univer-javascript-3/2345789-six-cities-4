@@ -1,7 +1,11 @@
 import CardArticle from './card.tsx';
 import Header from './header.tsx';
 
-function MainScreen(props: any): JSX.Element {
+type MainProps = {
+    placesToStay: string;
+}
+
+function MainScreen(props: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
 
@@ -67,11 +71,11 @@ function MainScreen(props: any): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardArticle price={120} isInBookmarks={false} roomName={'Beautiful &amp; luxurious apartment at great location'} roomType="Apartment"></CardArticle>
-                <CardArticle price={80} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
-                <CardArticle price={132} isInBookmarks={false} roomName={'Canal View Prinsengracht'} roomType="Apartment"></CardArticle>
-                <CardArticle price={180} isInBookmarks={false} roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
-                <CardArticle price={80} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
+                <CardArticle price={'120'} isInBookmarks={false} roomName={'Beautiful &amp; luxurious apartment at great location'} roomType="Apartment"></CardArticle>
+                <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
+                <CardArticle price={'132'} isInBookmarks={false} roomName={'Canal View Prinsengracht'} roomType="Apartment"></CardArticle>
+                <CardArticle price={'180'} isInBookmarks={false} roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
+                <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
               </div>
             </section>
             <div className="cities__right-section">
