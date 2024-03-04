@@ -1,11 +1,15 @@
 import CardArticle from './card';
 import Header from './header';
 
-function OfferScreen(): JSX.Element {
+type OfferProps = {
+    offers: string[];
+}
+
+function OfferScreen({offers}: OfferProps): JSX.Element {
   return (
     <div className="page">
       <Header />
-
+      {null && offers}
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
