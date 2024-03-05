@@ -1,7 +1,12 @@
-import CardArticle from './card';
+import CardsList from './cardsList';
 import Header from './header';
+import Offer from './types/offers';
 
-function FavoutiteScreen (): JSX.Element {
+type FavouriteProps = {
+    offers: Offer[];
+}
+
+function FavoutiteScreen({offers}: FavouriteProps): JSX.Element {
   return (
     <div className="page">
       <Header />
@@ -20,21 +25,7 @@ function FavoutiteScreen (): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <CardArticle price={'180'} isInBookmarks roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
-                  <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <CardArticle price={'180'} isInBookmarks roomName={'White castle'} roomType="Apartment"></CardArticle>
+                  <CardsList cards={offers.map((item) => ({id: item.id, price: item.price, isInBookmarks: item.isInBookmarks, roomName: item.name, roomType: item.features[0]}))} />
                 </div>
               </li>
             </ul>

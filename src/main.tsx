@@ -1,11 +1,13 @@
-import CardArticle from './card.tsx';
 import Header from './header.tsx';
+import Offer from './types/offers.ts';
+import CardsList from './cardsList.tsx';
 
 type MainProps = {
     placesToStay: string;
+    offers: Offer[];
 }
 
-function MainScreen(props: MainProps): JSX.Element {
+function MainScreen({placesToStay, offers}: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
 
@@ -54,7 +56,7 @@ function MainScreen(props: MainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{props.placesToStay} places to stay in Amsterdam</b>
+              <b className="places__found">{placesToStay} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -71,11 +73,7 @@ function MainScreen(props: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardArticle price={'120'} isInBookmarks={false} roomName={'Beautiful &amp; luxurious apartment at great location'} roomType="Apartment"></CardArticle>
-                <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
-                <CardArticle price={'132'} isInBookmarks={false} roomName={'Canal View Prinsengracht'} roomType="Apartment"></CardArticle>
-                <CardArticle price={'180'} isInBookmarks={false} roomName={'Nice, cozy, warm big bed apartment'} roomType="Apartment"></CardArticle>
-                <CardArticle price={'80'} isInBookmarks roomName={'Wood and stone place'} roomType="Room"></CardArticle>
+                <CardsList cards={offers.map((item) => ({id: item.id, price: item.price, isInBookmarks: item.isInBookmarks, roomName: item.name, roomType: item.features[0]}))} />
               </div>
             </section>
             <div className="cities__right-section">
