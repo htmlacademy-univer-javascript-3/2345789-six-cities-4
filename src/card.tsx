@@ -1,11 +1,15 @@
-type CardProps = {
-    price: string;
-    isInBookmarks: boolean;
-    roomName: string;
-    roomType: string;
-}
+import { useState } from 'react';
+import CardProps from './types/cardProps';
+import {NavLink} from 'react-router-dom';
+import ScrollToTop from './scroll-to-top';
 
 function CardArticle(props: CardProps): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [activeOfferId, setActiveOfferId] = useState('');
+  function handleMouseOver() {
+    setActiveOfferId(props.id);
+  }
+
   let bookmark;
   if (props.isInBookmarks) {
     bookmark = 'In bookmarks';
@@ -13,7 +17,7 @@ function CardArticle(props: CardProps): JSX.Element {
     bookmark = 'To bookmarks';
   }
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={handleMouseOver}>
       <div className="citiesimage-wrapper place-cardimage-wrapper">
         <a href="#">
           <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
@@ -39,7 +43,8 @@ function CardArticle(props: CardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{props.roomName}</a>
+          <ScrollToTop />
+          <NavLink to={`/offer/${activeOfferId}`} >{props.roomName}</NavLink>
         </h2>
         <p className="place-card__type">{props.roomType}</p>
       </div>
