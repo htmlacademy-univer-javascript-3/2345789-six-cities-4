@@ -12,8 +12,11 @@ type Review = {
     img: string;
 }
 
+type Coordinates = [number, number];
+
 type Offer = {
     id: string;
+    coordinates: Coordinates;
     class: string;
     name: string;
     isInBookmarks: boolean;
