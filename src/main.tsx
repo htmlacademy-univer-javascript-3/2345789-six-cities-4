@@ -1,6 +1,10 @@
 import Header from './header.tsx';
 import Offer from './types/offers.ts';
 import CardsList from './cardsList.tsx';
+import Map from './map.tsx';
+import { amsterdam } from './mocks/city.ts';
+import { useState } from 'react';
+import { Point } from './types/map.ts';
 
 type MainProps = {
     placesToStay: string;
@@ -8,6 +12,16 @@ type MainProps = {
 }
 
 function MainScreen({placesToStay, offers}: MainProps): JSX.Element {
+  const points = offers.map((item) => ({
+    title: item.name,
+    lat: item.coordinates[0],
+    lng: item.coordinates[1]
+  }));
+  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(points[0]);
+  const handleListItemHover = (listItemName: string) => {
+    const currentPoint = points.find((point) => point.title === listItemName);
+    setSelectedPoint(currentPoint);
+  };
   return (
     <div className="page page--gray page--main">
 
@@ -73,11 +87,13 @@ function MainScreen({placesToStay, offers}: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardsList cards={offers.map((item) => ({id: item.id, price: item.price, isInBookmarks: item.isInBookmarks, roomName: item.name, roomType: item.features[0]}))} />
+                <CardsList cards={offers.map((item) => ({id: item.id, price: item.price, isInBookmarks: item.isInBookmarks, roomName: item.name, roomType: item.features[0], onListItemHover: handleListItemHover}))}/>
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map city={amsterdam} points={points} selectedPoint={selectedPoint} />
+              </section>
             </div>
           </div>
         </div>

@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import CardProps from './types/cardProps';
+import { CardProps } from './types/cardProps';
 import {NavLink} from 'react-router-dom';
 import ScrollToTop from './scroll-to-top';
+
 
 function CardArticle(props: CardProps): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOfferId, setActiveOfferId] = useState('');
   function handleMouseOver() {
+    if (props.onListItemHover) {
+      props.onListItemHover(props.roomName);
+    }
     setActiveOfferId(props.id);
   }
 

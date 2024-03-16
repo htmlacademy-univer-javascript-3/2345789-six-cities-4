@@ -3,6 +3,7 @@ import Offer from '../types/offers';
 export const offers: Offer[] = [
   {
     id: '0',
+    coordinates: [52.3909553943508, 4.85309666406198],
     class: 'Premium',
     name: 'Beautiful &amp; luxurious studio at great location',
     isInBookmarks: false,
@@ -29,6 +30,7 @@ export const offers: Offer[] = [
   },
   {
     id: '1',
+    coordinates: [52.3609553943508, 4.85309666406198],
     class: 'Economy',
     name: 'Cozy and affordable room near downtown',
     isInBookmarks: false,
@@ -55,6 +57,7 @@ export const offers: Offer[] = [
   },
   {
     id: '2',
+    coordinates: [52.3909553943508, 4.929309666406198],
     class: 'Deluxe',
     name: 'Spacious family house with a garden',
     isInBookmarks: false,
@@ -81,6 +84,7 @@ export const offers: Offer[] = [
   },
   {
     id: '3',
+    coordinates: [52.3809553943508, 4.939309666406198],
     class: 'Business',
     name: 'Modern apartment in the business district',
     isInBookmarks: true,
