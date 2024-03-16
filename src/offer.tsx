@@ -1,9 +1,12 @@
 import CardsList from './cardsList';
 import Header from './header';
-import Offer from './types/offers';
+import { Offer } from './types/offers';
 import {useParams} from 'react-router-dom';
 import Error404 from './404';
 import ReviewForm from './review-form';
+import ReviewsList from './review-list';
+import Map from './map';
+import { amsterdam } from './mocks/city';
 
 type OfferProps = {
     offers: Offer[];
@@ -15,6 +18,12 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
   if (!offer) {
     return (<Error404 />);
   }
+  const points = offers.map((item) => ({
+    title: item.name,
+    lat: item.coordinates[0],
+    lng: item.coordinates[1]
+  }));
+  const selectedPoint = points.find((o) => o.title === offer.name);
 
   const otherOffers = offers.filter((e) => e !== offer);
 
@@ -41,39 +50,6 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
       {item}
     </li>
   ));
-
-  const offerReviews = offer.reviews.map((item, i) => {
-    const date = new Date(item.date);
-    const formattedDate = date.toLocaleDateString('en-US', {
-      month: 'long',
-      year: 'numeric'
-    });
-    return (
-    // eslint-disable-next-line react/no-array-index-key
-      <li className="reviews__item" key={i}>
-        <div className="reviews__user user">
-          <div className="reviews__avatar-wrapper user__avatar-wrapper">
-            <img className="reviews__avatar user__avatar" src={item.img} width="54" height="54" alt="Reviews avatar"></img>
-          </div>
-          <span className="reviews__user-name">
-            {item.name}
-          </span>
-        </div>
-        <div className="reviews__info">
-          <div className="reviews__rating rating">
-            <div className="reviews__stars rating__stars">
-              <span style={{width: `${item.rating}%`}}></span>
-              <span className="visually-hidden">Rating</span>
-            </div>
-          </div>
-          <p className="reviews__text">
-            {item.text}
-          </p>
-          <time className="reviews__time" dateTime={item.date}>{formattedDate}</time>
-        </div>
-      </li>
-    );
-  });
 
   return (
     <div className="page">
@@ -143,15 +119,14 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                <ul className="reviews__list">
-                  {offerReviews}
-                </ul>
+                <ReviewsList reviews={offer.reviews} />
                 <ReviewForm />
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className="offer__map map">
+            <Map city={amsterdam} points={points} selectedPoint={selectedPoint} height='600px' width='1200px' />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

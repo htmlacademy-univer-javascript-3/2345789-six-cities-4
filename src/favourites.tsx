@@ -1,6 +1,6 @@
 import CardsList from './cardsList';
 import Header from './header';
-import Offer from './types/offers';
+import { Offer } from './types/offers';
 
 type FavouriteProps = {
     offers: Offer[];

@@ -5,7 +5,7 @@ import FavoutiteScreen from './favourites.tsx';
 import OfferScreen from './offer.tsx';
 import Error404 from './404.tsx';
 import PrivateRoute from './private-route.tsx';
-import Offer from './types/offers.ts';
+import { Offer } from './types/offers.ts';
 
 type AppProps = {
     offers: Offer[];

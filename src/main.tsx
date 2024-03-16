@@ -1,5 +1,5 @@
 import Header from './header.tsx';
-import Offer from './types/offers.ts';
+import { Offer } from './types/offers.ts';
 import CardsList from './cardsList.tsx';
 import Map from './map.tsx';
 import { amsterdam } from './mocks/city.ts';
@@ -92,7 +92,7 @@ function MainScreen({placesToStay, offers}: MainProps): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={amsterdam} points={points} selectedPoint={selectedPoint} />
+                <Map city={amsterdam} points={points} selectedPoint={selectedPoint} height='800px' width='515px' />
               </section>
             </div>
           </div>
