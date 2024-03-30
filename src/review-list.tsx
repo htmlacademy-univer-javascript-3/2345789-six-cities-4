@@ -6,9 +6,8 @@ type ReviewListProps = {
 }
 
 function ReviewsList({reviews}: ReviewListProps): JSX.Element {
-  const offerReviews = reviews.map((item, i) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <Review key={i} img={item.img} name={item.name} rating={item.rating} text={item.text} date={item.date} />
+  const offerReviews = reviews.map((item) => (
+    <Review key={`${item.name}`} img={item.img} name={item.name} rating={item.rating} text={item.text} date={item.date} />
   ));
   return (
     <div>

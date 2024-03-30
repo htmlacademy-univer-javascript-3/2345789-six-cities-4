@@ -30,23 +30,20 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
   const offerImages = offer.images.map((item, i) => {
     const photoAlt = `Photo studio ${i}`;
     return (
-      // eslint-disable-next-line react/no-array-index-key
-      <div className="offer__image-wrapper" key={i}>
+      <div className="offer__image-wrapper" key={`${item}`}>
         <img className="offer__image" src={item} alt={photoAlt} ></img>
       </div>
     );
   });
 
-  const offerFeatures = offer.features.map((item, i) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <li className="offer__feature offer__feature--entire" key={i}>
+  const offerFeatures = offer.features.map((item) => (
+    <li className="offer__feature offer__feature--entire" key={`${item}`}>
       {item}
     </li>
   ));
 
-  const offerInside = offer.inside.map((item, i) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <li className="offer__inside-item" key={i}>
+  const offerInside = offer.inside.map((item) => (
+    <li className="offer__inside-item" key={`${item}`}>
       {item}
     </li>
   ));
