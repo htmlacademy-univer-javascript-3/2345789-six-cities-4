@@ -4,7 +4,7 @@ type Host = {
     img: string;
 }
 
-type Review = {
+export type ReviewProps = {
     name: string;
     rating: number;
     text: string;
@@ -14,7 +14,7 @@ type Review = {
 
 type Coordinates = [number, number];
 
-type Offer = {
+export type Offer = {
     id: string;
     coordinates: Coordinates;
     class: string;
@@ -27,7 +27,5 @@ type Offer = {
     images: string[];
     host: Host;
     description: string;
-    reviews: Review[];
+    reviews: ReviewProps[];
 }
-
-export default Offer;
