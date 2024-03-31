@@ -5,23 +5,23 @@ import { filters } from './const';
 
 type CardsListProps = {
     cards: CardProps[];
-    sortType: string;
+    sortType?: string;
 }
 
 function CardsList({cards, sortType}: CardsListProps): JSX.Element {
-  let sortedCards: CardProps[];
-  switch (sortType) {
-    case filters.LOW_TO_HIGH:
-      sortedCards = [...cards].sort((a, b) => a.price - b.price);
-      break;
-    case filters.HIGH_TO_LOW:
-      sortedCards = [...cards].sort((a, b) => b.price - a.price);
-      break;
-    case filters.TOP_RATED:
-      sortedCards = [...cards].sort((a, b) => b.rating - a.rating);
-      break;
-    default:
-      sortedCards = cards;
+  let sortedCards = cards;
+  if (sortType) {
+    switch (sortType) {
+      case filters.LOW_TO_HIGH:
+        sortedCards = [...cards].sort((a, b) => a.price - b.price);
+        break;
+      case filters.HIGH_TO_LOW:
+        sortedCards = [...cards].sort((a, b) => b.price - a.price);
+        break;
+      case filters.TOP_RATED:
+        sortedCards = [...cards].sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+        break;
+    }
   }
   return (
     <>

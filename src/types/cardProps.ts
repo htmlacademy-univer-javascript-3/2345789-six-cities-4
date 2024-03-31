@@ -1,7 +1,7 @@
 export type CardProps = {
     id: string;
     price: number;
-    rating: number;
+    rating?: number;
     isInBookmarks: boolean;
     roomName: string;
     roomType: string;
