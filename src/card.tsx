@@ -5,7 +5,6 @@ import ScrollToTop from './scroll-to-top';
 
 
 function CardArticle(props: CardProps): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOfferId, setActiveOfferId] = useState('');
   function handleMouseOver() {
     if (props.onListItemHover) {

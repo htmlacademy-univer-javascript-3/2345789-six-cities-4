@@ -4,7 +4,7 @@ import { filters } from './const';
 
 
 type CardsListProps = {
-    cards: CardProps[] & {rating: number}[];
+    cards: CardProps[];
     sortType: string;
 }
 
@@ -26,7 +26,7 @@ function CardsList({cards, sortType}: CardsListProps): JSX.Element {
   return (
     <>
       {sortedCards.map((item) => (
-        <CardArticle key={item.id} id={item.id} price={item.price} isInBookmarks={item.isInBookmarks} roomName={item.roomName} roomType={item.roomType} onListItemHover={item.onListItemHover} />
+        <CardArticle key={item.id} id={item.id} price={item.price} rating={item.rating} isInBookmarks={item.isInBookmarks} roomName={item.roomName} roomType={item.roomType} onListItemHover={item.onListItemHover} />
       ))}
     </>
   );
