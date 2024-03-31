@@ -111,7 +111,7 @@ function MainScreen(): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={amsterdam} points={points} selectedPoint={selectedPoint} height='800px' width='515px' /> # пока захардкожено
+                <Map city={amsterdam} points={points} selectedPoint={selectedPoint} height='800px' width='515px' />
               </section>
             </div>
           </div>
