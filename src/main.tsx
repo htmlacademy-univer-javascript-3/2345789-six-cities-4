@@ -7,6 +7,8 @@ import { Point } from './types/map.ts';
 import { useAppDispatch } from './hooks/index.ts';
 import { updateOffers } from './store/action.ts';
 import { store } from './store/index.ts';
+import { filters } from './const.ts';
+import Filters from './filters.tsx';
 
 
 function MainScreen(): JSX.Element {
@@ -23,6 +25,10 @@ function MainScreen(): JSX.Element {
   const handleListItemHover = (listItemName: string) => {
     const currentPoint = points.find((point) => point.title === listItemName);
     setSelectedPoint(currentPoint);
+  };
+  const [sortType, setSortType] = useState(filters.POPULAR);
+  const handleSort = (newSortType: string) => {
+    setSortType(newSortType);
   };
   const dispatch = useAppDispatch();
   return (
@@ -98,28 +104,14 @@ function MainScreen(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{currentState.offers.length.toString()} places to stay in {currentState.city}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                                Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use href="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="placesoptions placesoptions--custom places__options--opened">
-                  <li className="placesoption placesoption--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
+              <Filters handleSort={handleSort} />
               <div className="cities__places-list places__list tabs__content">
-                <CardsList cards={currentState.offers.map((item) => ({id: item.id, price: item.price, isInBookmarks: item.isInBookmarks, roomName: item.name, roomType: item.features[0], onListItemHover: handleListItemHover}))}/>
+                <CardsList cards={currentState.offers.map((item) => ({id: item.id, price: item.price, rating: item.rating, isInBookmarks: item.isInBookmarks, roomName: item.name, roomType: item.features[0], onListItemHover: handleListItemHover}))} sortType={sortType}/>
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={amsterdam} points={points} selectedPoint={selectedPoint} height='800px' width='515px' /> # пока захардкожено
+                <Map city={amsterdam} points={points} selectedPoint={selectedPoint} height='800px' width='515px' />
               </section>
             </div>
           </div>
