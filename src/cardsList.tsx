@@ -26,7 +26,7 @@ function CardsList({cards, sortType}: CardsListProps): JSX.Element {
   return (
     <>
       {sortedCards.map((item) => (
-        <CardArticle key={item.id} id={item.id} price={item.price} rating={item.rating} isInBookmarks={item.isInBookmarks} roomName={item.roomName} roomType={item.roomType} onListItemHover={item.onListItemHover} />
+        <CardArticle key={item.id} id={item.id} price={item.price} rating={item.rating} roomName={item.roomName} roomType={item.roomType} image={item.image} onListItemHover={item.onListItemHover} />
       ))}
     </>
   );

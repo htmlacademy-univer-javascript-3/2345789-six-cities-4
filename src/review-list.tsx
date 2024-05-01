@@ -1,13 +1,13 @@
-import { ReviewProps } from './types/offers';
+import { Comment } from './types/offers';
 import Review from './review';
 
 type ReviewListProps = {
-    reviews: ReviewProps[];
+    reviews: Comment[];
 }
 
 function ReviewsList({reviews}: ReviewListProps): JSX.Element {
   const offerReviews = reviews.map((item) => (
-    <Review key={`${item.name}`} img={item.img} name={item.name} rating={item.rating} text={item.text} date={item.date} />
+    <Review key={`${item.id}`} img={item.user.avatarUrl} name={item.user.name} rating={item.rating} text={item.comment} date={item.date} />
   ));
   return (
     <div>

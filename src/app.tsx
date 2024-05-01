@@ -5,14 +5,19 @@ import FavoutiteScreen from './favourites.tsx';
 import OfferScreen from './offer.tsx';
 import Error404 from './404.tsx';
 import PrivateRoute from './private-route.tsx';
-import { Offer } from './types/offers.ts';
-
-type AppProps = {
-    offers: Offer[];
-}
+import { useAppSelector } from './hooks/index.ts';
+import LoadingScreen from './loading-screen.tsx';
 
 
-function App({offers}: AppProps): JSX.Element {
+function App(): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const offers = useAppSelector((state) => state.offers);
+  const cityOffers = useAppSelector((state) => state.cityOffers);
+  if (isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <BrowserRouter>
       <Routes>
@@ -26,7 +31,7 @@ function App({offers}: AppProps): JSX.Element {
           }
           />
           <Route path="offer/">
-            <Route path=":id" element={<OfferScreen offers={ offers } />} />
+            <Route path=":id" element={<OfferScreen offers={ cityOffers } />} />
           </Route>
           <Route path="*" element={<Error404 />} />
         </Route>

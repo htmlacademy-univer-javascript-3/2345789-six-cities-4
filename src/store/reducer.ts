@@ -1,18 +1,44 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { updateOffers } from './action';
-import { offers } from '../mocks/offers';
+import { updateOffers, updateCity, setOffersDataLoadingStatus, updateCurrentOffer, updateCurrentComments } from './action';
+import { Offer, FullOffer, Comment } from '../types/offers';
 
-const initialState = {
-  city: 'Amsterdam', // в тех задании сказано, что дефолтный город должен быть Париж, но тестовые данные были сделаны для Амстердама, поэтому пока так
-  offers: offers
+type InitialState = {
+  city: string;
+  offers: Offer[];
+  cityOffers: Offer[];
+  isOffersDataLoading: boolean;
+  currentOffer: FullOffer | undefined;
+  currentComments: Comment[];
+}
+
+const initialState: InitialState = {
+  city: 'Paris',
+  offers: [],
+  cityOffers: [],
+  isOffersDataLoading: true,
+  currentOffer: undefined,
+  currentComments: []
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(updateOffers, (state, action) => {
+    .addCase(updateCity, (state, action) => {
       state.city = action.payload;
-      state.offers = offers; // тут будет функция получения новых оферов от АПИ, пока мок
+      state.cityOffers = state.offers.filter((o) => o.city.name === state.city);
+    })
+    .addCase(updateOffers, (state, action) => {
+      state.offers = action.payload;
+      state.cityOffers = state.offers.filter((o) => o.city.name === state.city);
+    })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
+    })
+    .addCase(updateCurrentOffer, (state, action) => {
+      state.currentOffer = action.payload;
+    })
+    .addCase(updateCurrentComments, (state, action) => {
+      state.currentComments = action.payload;
     });
 });
 
-export default reducer;
+export {reducer};
