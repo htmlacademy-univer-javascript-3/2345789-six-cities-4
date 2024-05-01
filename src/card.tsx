@@ -12,7 +12,6 @@ function CardArticle(props: CardProps): JSX.Element {
     }
     setActiveOfferId(props.id);
   }
-  console.log(props.image);
   return (
     <article className="cities__card place-card" onMouseOver={handleMouseOver}>
       <div className="citiesimage-wrapper place-cardimage-wrapper">
