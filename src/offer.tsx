@@ -19,18 +19,18 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
     return (<Error404 />);
   }
   const points = offers.map((item) => ({
-    title: item.name,
-    lat: item.coordinates[0],
-    lng: item.coordinates[1]
+    title: item.title,
+    lat: item.location.latitude,
+    lng: item.location.longitude
   }));
-  const selectedPoint = points.find((o) => o.title === offer.name);
+  const selectedPoint = points.find((o) => o.title === offer.title);
 
   const otherOffers = offers.filter((e) => e !== offer);
 
   const offerImages = offer.images.map((item, i) => {
     const photoAlt = `Photo studio ${i}`;
     return (
-      <div className="offer__image-wrapper" key={`${item}`}>
+      <div className="offer__image-wrapper" key={`${item.id}`}>
         <img className="offer__image" src={item} alt={photoAlt} ></img>
       </div>
     );

@@ -6,6 +6,9 @@ import OfferScreen from './offer.tsx';
 import Error404 from './404.tsx';
 import PrivateRoute from './private-route.tsx';
 import { Offer } from './types/offers.ts';
+import { useAppSelector } from './hooks/index.ts';
+import LoadingScreen from './loading-screen.tsx';
+
 
 type AppProps = {
     offers: Offer[];
@@ -13,6 +16,12 @@ type AppProps = {
 
 
 function App({offers}: AppProps): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  if (isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <BrowserRouter>
       <Routes>

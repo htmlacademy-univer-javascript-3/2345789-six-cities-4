@@ -1,9 +1,3 @@
-type Host = {
-    name: string;
-    status: string;
-    img: string;
-}
-
 export type ReviewProps = {
     name: string;
     rating: number;
@@ -12,20 +6,26 @@ export type ReviewProps = {
     img: string;
 }
 
-type Coordinates = [number, number];
+export type Location = {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+};
+
+export type City = {
+    name: string;
+    location: Location;
+}
 
 export type Offer = {
     id: string;
-    coordinates: Coordinates;
-    class: string;
-    name: string;
-    isInBookmarks: boolean;
-    rating: number;
-    features: string[];
+    title: string;
+    type: string;
     price: number;
-    inside: string[];
-    images: string[];
-    host: Host;
-    description: string;
-    reviews: ReviewProps[];
-}
+    city: City;
+    location: Location;
+    isFavorite: boolean;
+    isPremium: boolean;
+    rating: number;
+    previewImage: string;
+    }

@@ -8,22 +8,16 @@ function CardArticle(props: CardProps): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState('');
   function handleMouseOver() {
     if (props.onListItemHover) {
-      props.onListItemHover(props.roomName);
+      props.onListItemHover(props.id);
     }
     setActiveOfferId(props.id);
   }
-
-  let bookmark;
-  if (props.isInBookmarks) {
-    bookmark = 'In bookmarks';
-  } else {
-    bookmark = 'To bookmarks';
-  }
+  console.log(props.image);
   return (
     <article className="cities__card place-card" onMouseOver={handleMouseOver}>
       <div className="citiesimage-wrapper place-cardimage-wrapper">
         <a href="#">
-          <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={`${props.image}`} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -36,7 +30,7 @@ function CardArticle(props: CardProps): JSX.Element {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use href="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">{bookmark}</span>
+            <span className="visually-hidden">To Bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
