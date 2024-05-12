@@ -10,3 +10,20 @@ export const filters = {
   HIGH_TO_LOW: 'Price: high to low',
   TOP_RATED: 'Top rated first'
 };
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
+};
+
+export type AuthData = {
+  login: string;
+  password: string;
+};
