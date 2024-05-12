@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CardProps } from './types/cardProps';
 import {NavLink} from 'react-router-dom';
 import ScrollToTop from './scroll-to-top';
+import { memo } from 'react';
 
 
 function CardArticle(props: CardProps): JSX.Element {
@@ -34,7 +35,7 @@ function CardArticle(props: CardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-cardstars ratingstars">
-            <span style={{ width: '80%' }}></span> {/* Adjusted style attribute */}
+            <span style={{ width: '80%' }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -48,4 +49,4 @@ function CardArticle(props: CardProps): JSX.Element {
   );
 }
 
-export default CardArticle;
+export default memo(CardArticle);

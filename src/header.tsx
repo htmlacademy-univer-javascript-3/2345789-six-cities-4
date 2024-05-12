@@ -7,9 +7,9 @@ import { AuthorizationStatus } from './const';
 import LoadingScreen from './loading-screen';
 
 function Header(): JSX.Element {
-  const isAuthorized = useAppSelector((state) => state.authorizationStatus);
-  const isUserDataLoading = useAppSelector((state) => state.isUserDataLoading);
-  const userLogin = useAppSelector((state) => state.userLogin);
+  const isAuthorized = useAppSelector((state) => state.user.authorizationStatus);
+  const isUserDataLoading = useAppSelector((state) => state.user.isUserDataLoading);
+  const userLogin = useAppSelector((state) => state.user.userLogin);
   const dispatch = useAppDispatch();
   if (isUserDataLoading) {
     // Пока идет загрузка данных, показываем LoadingScreen

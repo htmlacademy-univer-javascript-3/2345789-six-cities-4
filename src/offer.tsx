@@ -25,8 +25,8 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
       dispatch(fetchСommentsAction({id: offer.id}));
     }
   }, [dispatch, offer?.id]);
-  const currentOffer = useAppSelector((state) => state.currentOffer);
-  const currentComments = useAppSelector((state) => state.currentComments);
+  const currentOffer = useAppSelector((state) => state.offers.currentOffer);
+  const currentComments = useAppSelector((state) => state.offers.currentComments);
   if (!offer) {
     return (<Error404 />);
   }
