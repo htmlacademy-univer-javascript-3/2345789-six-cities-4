@@ -27,3 +27,9 @@ export type AuthData = {
   login: string;
   password: string;
 };
+
+export type CommentData = {
+  id: string;
+  comment: string;
+  rating: number;
+};

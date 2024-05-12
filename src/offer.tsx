@@ -139,7 +139,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
               </div>
               <section className="offer__reviews reviews">
                 <ReviewsList reviews={currentComments} />
-                <ReviewForm />
+                <ReviewForm offerId={currentOffer.id} />
               </section>
             </div>
           </div>

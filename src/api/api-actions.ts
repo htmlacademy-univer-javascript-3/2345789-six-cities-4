@@ -4,7 +4,7 @@ import { AppDispatch, State } from '../types/state';
 import { Offer, FullOffer, Comment } from '../types/offers';
 import { updateOffers, setOffersDataLoadingStatus, updateCurrentOffer, updateCurrentComments, requireAuthorization, updateUserLogin, setUserDataLoadingStatus } from '../store/action';
 import { APIRoutes } from './const';
-import { AuthorizationStatus, UserData, AuthData } from '../const';
+import { AuthorizationStatus, UserData, AuthData, CommentData } from '../const';
 import { saveToken, dropToken } from '../token';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -46,6 +46,19 @@ export const fetchСommentsAction = createAsyncThunk<void, { id: string | undefi
     dispatch(setOffersDataLoadingStatus(true));
     dispatch(updateCurrentComments(data));
     dispatch(setOffersDataLoadingStatus(false));
+  },
+);
+
+export const postCommentAction = createAsyncThunk<void, CommentData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/login',
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    dispatch(setUserDataLoadingStatus(true));
+    await api.post<UserData>(APIRoutes.Comments.concat(`/${id}`), {comment, rating});
+    dispatch(setUserDataLoadingStatus(false));
   },
 );
 
