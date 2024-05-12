@@ -40,9 +40,9 @@ function MainScreen(): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locationslist tabslist">
+            <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className={currentState.city === 'Paris' ? 'locationsitem-link tabsitem tabs__item--active' : 'locationsitem-link tabsitem'} href="#" onClick={() => {
+                <a className={currentState.city === 'Paris' ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} onClick={() => {
                   dispatch(updateCity('Paris'));
                   handleCurrentState();
                 }}
@@ -51,7 +51,7 @@ function MainScreen(): JSX.Element {
                 </a>
               </li>
               <li className="locations__item">
-                <a className={currentState.city === 'Cologne' ? 'locationsitem-link tabsitem tabs__item--active' : 'locationsitem-link tabsitem'} href="#" onClick={() => {
+                <a className={currentState.city === 'Cologne' ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} href="#" onClick={() => {
                   dispatch(updateCity('Cologne'));
                   handleCurrentState();
                 }}
@@ -60,7 +60,7 @@ function MainScreen(): JSX.Element {
                 </a>
               </li>
               <li className="locations__item">
-                <a className={currentState.city === 'Brussels' ? 'locationsitem-link tabsitem tabs__item--active' : 'locationsitem-link tabsitem'} href="#" onClick={() => {
+                <a className={currentState.city === 'Brussels' ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} href="#" onClick={() => {
                   dispatch(updateCity('Brussels'));
                   handleCurrentState();
                 }}
@@ -69,7 +69,7 @@ function MainScreen(): JSX.Element {
                 </a>
               </li>
               <li className="locations__item">
-                <a className={currentState.city === 'Amsterdam' ? 'locationsitem-link tabsitem tabs__item--active' : 'locationsitem-link tabsitem'} onClick={() => {
+                <a className={currentState.city === 'Amsterdam' ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} onClick={() => {
                   dispatch(updateCity('Amsterdam'));
                   handleCurrentState();
                 }}
@@ -78,7 +78,7 @@ function MainScreen(): JSX.Element {
                 </a>
               </li>
               <li className="locations__item">
-                <a className={currentState.city === 'Hamburg' ? 'locationsitem-link tabsitem tabs__item--active' : 'locationsitem-link tabsitem'} href="#" onClick={() => {
+                <a className={currentState.city === 'Hamburg' ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} href="#" onClick={() => {
                   dispatch(updateCity('Hamburg'));
                   handleCurrentState();
                 }}
@@ -87,7 +87,7 @@ function MainScreen(): JSX.Element {
                 </a>
               </li>
               <li className="locations__item">
-                <a className={currentState.city === 'Dusseldorf' ? 'locationsitem-link tabsitem tabs__item--active' : 'locationsitem-link tabsitem'} href="#" onClick={() => {
+                <a className={currentState.city === 'Dusseldorf' ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} href="#" onClick={() => {
                   dispatch(updateCity('Dusseldorf'));
                   handleCurrentState();
                 }}
