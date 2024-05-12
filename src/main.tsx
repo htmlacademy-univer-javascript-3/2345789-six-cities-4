@@ -7,9 +7,9 @@ import Places from './places.tsx';
 
 
 function MainScreen(): JSX.Element {
-  const [currentState, setCurrentState] = useState(store.getState());
+  const [currentState, setCurrentState] = useState(store.getState().offers);
   const handleCurrentState = () => {
-    setCurrentState(store.getState());
+    setCurrentState(store.getState().offers);
   };
   const dispatch = useAppDispatch();
   return (
