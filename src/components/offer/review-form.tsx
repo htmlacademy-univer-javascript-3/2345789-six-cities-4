@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAppDispatch } from './hooks';
-import { postCommentAction, fetchСommentsAction } from './api/api-actions';
+import { useAppDispatch } from '../../hooks';
+import { postCommentAction, fetchСommentsAction } from '../../api/api-actions';
 import { FormEvent } from 'react';
 
 type ReviewFormProps = {

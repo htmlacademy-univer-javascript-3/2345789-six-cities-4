@@ -1,6 +1,6 @@
-import { CardProps } from './types/cardProps';
+import { CardProps } from '../../types/cardProps';
 import CardArticle from './card';
-import { filters } from './const';
+import { filters } from '../../const';
 
 
 type CardsListProps = {
@@ -26,7 +26,7 @@ function CardsList({cards, sortType}: CardsListProps): JSX.Element {
   return (
     <>
       {sortedCards.map((item) => (
-        <CardArticle key={item.id} id={item.id} price={item.price} rating={item.rating} roomName={item.roomName} roomType={item.roomType} image={item.image} onListItemHover={item.onListItemHover} />
+        <CardArticle key={item.id} id={item.id} price={item.price} rating={item.rating} isFavorite={item.isFavorite} roomName={item.roomName} roomType={item.roomType} image={item.image} onListItemHover={item.onListItemHover} />
       ))}
     </>
   );
