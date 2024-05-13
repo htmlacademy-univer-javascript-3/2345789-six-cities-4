@@ -1,9 +1,10 @@
-import Header from './header.tsx';
+import Header from '../header.tsx';
 import { useState } from 'react';
-import { useAppDispatch } from './hooks/index.ts';
-import { updateCity } from './store/action.ts';
-import { store } from './store/index.ts';
+import { useAppDispatch } from '../../hooks/index.ts';
+import { updateCity } from '../../store/action.ts';
+import { store } from '../../store/index.ts';
 import Places from './places.tsx';
+import MainEmpty from './main-empty.tsx';
 
 
 function MainScreen(): JSX.Element {
@@ -81,7 +82,7 @@ function MainScreen(): JSX.Element {
         </div>
 
         <div className="cities">
-          <Places city={currentState.city} cityOffers={currentState.cityOffers} />
+          {currentState.cityOffers.length > 0 ? <Places city={currentState.city} cityOffers={currentState.cityOffers} /> : <MainEmpty city={currentState.city} />}
         </div>
       </main>
     </div>

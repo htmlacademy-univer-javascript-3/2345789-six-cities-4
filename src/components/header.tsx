@@ -1,18 +1,18 @@
-import { useAppSelector } from './hooks';
-import { logoutAction } from './api/api-actions';
-import { updateUserLogin } from './store/action';
-import { useAppDispatch } from './hooks';
+import { useAppSelector } from '../hooks';
+import { logoutAction } from '../api/api-actions';
+import { updateUserLogin } from '../store/action';
+import { useAppDispatch } from '../hooks';
 import { JSX } from 'react/jsx-runtime';
-import { AuthorizationStatus } from './const';
+import { AuthorizationStatus } from '../const';
 import LoadingScreen from './loading-screen';
 
 function Header(): JSX.Element {
   const isAuthorized = useAppSelector((state) => state.user.authorizationStatus);
   const isUserDataLoading = useAppSelector((state) => state.user.isUserDataLoading);
   const userLogin = useAppSelector((state) => state.user.userLogin);
+  const favoritesCounter = useAppSelector((state) => state.favorite.favoritesCounter);
   const dispatch = useAppDispatch();
   if (isUserDataLoading) {
-    // Пока идет загрузка данных, показываем LoadingScreen
     return <LoadingScreen />;
   }
 
@@ -31,11 +31,11 @@ function Header(): JSX.Element {
       </li>
     );
     userSection = (
-      <a className="headernav-link headernav-link--profile" href="#">
+      <a className="headernav-link headernav-link--profile" href="/favorites">
         <div className="headeravatar-wrapper useravatar-wrapper">
         </div>
         <span className="headeruser-name username">{userLogin}</span>
-        <span className="header__favorite-count">69</span>
+        <span className="header__favorite-count">{favoritesCounter}</span>
       </a>
     );
   } else {

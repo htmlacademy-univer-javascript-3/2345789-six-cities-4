@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { filters } from './const';
+import { filters } from '../../const';
 
 type FiltersProps = {
     handleSort: (choice: string) => void;

@@ -1,17 +1,17 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import MainScreen from './main.tsx';
+import MainScreen from './main/main.tsx';
 import LoginScreen from './login.tsx';
-import FavoutiteScreen from './favourites.tsx';
-import OfferScreen from './offer.tsx';
-import Error404 from './404.tsx';
+import FavoriteScreen from './favorite/favorites.tsx';
+import OfferScreen from './offer/offer.tsx';
+import Error404 from '../404.tsx';
 import PrivateRoute from './private-route.tsx';
-import { useAppSelector } from './hooks/index.ts';
+import { useAppSelector } from '../hooks/index.ts';
 import LoadingScreen from './loading-screen.tsx';
 
 
 function App(): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.offers.isOffersDataLoading);
-  const offers = useAppSelector((state) => state.offers);
+  // const offers = useAppSelector((state) => state.offers);
   const cityOffers = useAppSelector((state) => state.offers.cityOffers);
   if (isOffersDataLoading) {
     return (
@@ -26,7 +26,7 @@ function App(): JSX.Element {
           <Route path="login" element={<LoginScreen />} />
           <Route path="favorites" element={
             <PrivateRoute>
-              <FavoutiteScreen offers={offers} />
+              <FavoriteScreen />
             </PrivateRoute>
           }
           />

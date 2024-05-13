@@ -1,23 +1,28 @@
-import CardsList from './cardsList';
-import Header from './header';
-import { Offer } from './types/offers';
+import CardsList from '../card/cardsList';
+import Header from '../header';
+import { Offer } from '../../types/offers';
 import {useParams} from 'react-router-dom';
-import Error404 from './404';
+import Error404 from '../../404';
 import ReviewForm from './review-form';
 import ReviewsList from './review-list';
-import Map from './map';
-import { fetchSingleOfferAction, fetchСommentsAction } from './api/api-actions';
-import LoadingScreen from './loading-screen';
-import { useAppSelector, useAppDispatch } from './hooks';
+import Map from '../map/map';
+import { fetchSingleOfferAction, fetchСommentsAction, updateFavorite } from '../../api/api-actions';
+import LoadingScreen from '../loading-screen';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
+import { AuthorizationStatus, FavoritesStatus } from '../../const';
+import { useState } from 'react';
+import { updateFavoritesCount } from '../../store/action';
 
 type OfferProps = {
     offers: Offer[];
 }
 
 function OfferScreen({offers}: OfferProps): JSX.Element {
+  const isAuthorized = useAppSelector((state) => state.user.authorizationStatus);
   const params = useParams();
   const offer = offers.find((o) => o.id === params.id);
+  const favoritesCounter = useAppSelector((state) => state.favorite.favoritesCounter);
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (offer?.id) {
@@ -26,6 +31,24 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
     }
   }, [dispatch, offer?.id]);
   const currentOffer = useAppSelector((state) => state.offers.currentOffer);
+  const [isFavorite, setIsFavorite] = useState(offer?.isFavorite);
+  function handleIsFavorite() {
+    if (isFavorite) {
+      dispatch(updateFavorite({
+        id: currentOffer?.id,
+        status: FavoritesStatus.DELETE
+      }));
+      setIsFavorite(false);
+      dispatch(updateFavoritesCount(favoritesCounter - 1));
+    } else {
+      dispatch(updateFavorite({
+        id: currentOffer?.id,
+        status: FavoritesStatus.ADD
+      }));
+      setIsFavorite(true);
+      dispatch(updateFavoritesCount(favoritesCounter + 1));
+    }
+  }
   const currentComments = useAppSelector((state) => state.offers.currentComments);
   if (!offer) {
     return (<Error404 />);
@@ -70,6 +93,18 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
     </li>
   ));
 
+  let authorizedSection;
+  if (isAuthorized === AuthorizationStatus.Auth) {
+    authorizedSection = (
+      <button className={isFavorite ? 'offer__bookmark-button offer__bookmark-button--active button' : 'offer__bookmark-button button'} type="button" onClick={handleIsFavorite}>
+        <svg className="offer__bookmark-icon" width="31" height="33">
+          <use href="#icon-bookmark"></use>
+        </svg>
+        <span className="visually-hidden">To Bookmarks</span>
+      </button>
+    );
+  }
+
   return (
     <div className="page">
       <Header />
@@ -91,12 +126,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
                 <h1 className="offer__name">
                   {currentOffer?.title}
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                {authorizedSection}
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
@@ -151,7 +181,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <CardsList cards={otherOffers.map((item) => ({id: item.id, price: item.price, rating: item.rating, roomName: item.title, roomType: item.type, image: item.previewImage}))} />
+              <CardsList cards={otherOffers.map((item) => ({id: item.id, price: item.price, rating: item.rating, isFavorite: item.isFavorite, roomName: item.title, roomType: item.type, image: item.previewImage}))} />
             </div>
           </section>
         </div>

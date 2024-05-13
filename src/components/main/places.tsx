@@ -1,10 +1,10 @@
 import Filters from './filters';
-import Map from './map';
-import CardsList from './cardsList';
-import { Offer } from './types/offers';
+import Map from '../map/map';
+import CardsList from '../card/cardsList';
+import { Offer } from '../../types/offers';
 import { useState } from 'react';
-import { filters } from './const';
-import { Point } from './types/map';
+import { filters } from '../../const';
+import { Point } from '../../types/map';
 
 type PlacesProps = {
     city: string;
@@ -35,7 +35,7 @@ function Places({city, cityOffers}: PlacesProps): JSX.Element {
         <b className="places__found">{cityOffers.length.toString()} places to stay in {city}</b>
         <Filters handleSort={handleSort} />
         <div className="cities__places-list places__list tabs__content">
-          <CardsList cards={cityOffers.map((item) => ({id: item.id, price: item.price, rating: item.rating, roomName: item.title, roomType: item.type, image: item.previewImage, onListItemHover: handleListItemHover}))} sortType={sortType}/>
+          <CardsList cards={cityOffers.map((item) => ({id: item.id, price: item.price, rating: item.rating, isFavorite: item.isFavorite, roomName: item.title, roomType: item.type, image: item.previewImage, onListItemHover: handleListItemHover}))} sortType={sortType}/>
         </div>
       </section>
       <div className="cities__right-section">

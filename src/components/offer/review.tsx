@@ -1,4 +1,4 @@
-import { ReviewProps } from './types/review';
+import { ReviewProps } from '../../types/review';
 
 function Review(props: ReviewProps): JSX.Element {
   const date = new Date(props.date);

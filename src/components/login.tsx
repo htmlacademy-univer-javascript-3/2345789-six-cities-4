@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from 'react';
-import { useAppDispatch } from './hooks';
+import { useAppDispatch } from '../hooks';
 import { useNavigate } from 'react-router-dom';
-import { loginAction } from './api/api-actions';
+import { loginAction } from '../api/api-actions';
 
 
 function LoginScreen(): JSX.Element {

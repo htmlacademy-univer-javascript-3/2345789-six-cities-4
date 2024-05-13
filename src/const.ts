@@ -33,3 +33,15 @@ export type CommentData = {
   comment: string;
   rating: number;
 };
+
+export enum FavoritesStatus {
+  ADD = 1,
+  DELETE = 0
+}
+
+export type FavoritesData = {
+  id: string | undefined;
+  status: FavoritesStatus;
+};
+
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
