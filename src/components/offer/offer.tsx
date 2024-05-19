@@ -2,7 +2,7 @@ import CardsList from '../card/cardsList';
 import Header from '../header';
 import { Offer } from '../../types/offers';
 import {useParams} from 'react-router-dom';
-import Error404 from '../../404';
+import Error404 from '../404';
 import ReviewForm from './review-form';
 import ReviewsList from './review-list';
 import Map from '../map/map';
