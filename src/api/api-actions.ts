@@ -129,7 +129,7 @@ export const fetchFavorites = createAsyncThunk<void, undefined, {
     } catch {
       dispatch(updateFavorites([]));
     } finally {
-      dispatch(setUserDataLoadingStatus(false));
+      dispatch(setFavoritesDataLoadingStatus(false));
     }
   },
 );
