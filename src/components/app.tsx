@@ -3,7 +3,7 @@ import MainScreen from './main/main.tsx';
 import LoginScreen from './login.tsx';
 import FavoriteScreen from './favorite/favorites.tsx';
 import OfferScreen from './offer/offer.tsx';
-import Error404 from '../404.tsx';
+import Error404 from './404.tsx';
 import PrivateRoute from './private-route.tsx';
 import { useAppSelector } from '../hooks/index.ts';
 import LoadingScreen from './loading-screen.tsx';

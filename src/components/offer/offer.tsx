@@ -2,7 +2,7 @@ import CardsList from '../card/cardsList';
 import Header from '../header';
 import { Offer } from '../../types/offers';
 import {useParams} from 'react-router-dom';
-import Error404 from '../../404';
+import Error404 from '../404';
 import ReviewForm from './review-form';
 import ReviewsList from './review-list';
 import Map from '../map/map';
@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { AuthorizationStatus, FavoritesStatus } from '../../const';
 import { useState } from 'react';
 import { updateFavoritesCount } from '../../store/action';
+import { setOffersDataLoadingStatus } from '../../store/action';
 
 type OfferProps = {
     offers: Offer[];
@@ -28,6 +29,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
     if (offer?.id) {
       dispatch(fetchSingleOfferAction({id: offer.id}));
       dispatch(fetchСommentsAction({id: offer.id}));
+      dispatch(setOffersDataLoadingStatus(false));
     }
   }, [dispatch, offer?.id]);
   const currentOffer = useAppSelector((state) => state.offers.currentOffer);
