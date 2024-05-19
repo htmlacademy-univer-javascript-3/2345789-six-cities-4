@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { AuthorizationStatus, FavoritesStatus } from '../../const';
 import { useState } from 'react';
 import { updateFavoritesCount } from '../../store/action';
+import { setOffersDataLoadingStatus } from '../../store/action';
 
 type OfferProps = {
     offers: Offer[];
@@ -28,6 +29,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
     if (offer?.id) {
       dispatch(fetchSingleOfferAction({id: offer.id}));
       dispatch(fetchСommentsAction({id: offer.id}));
+      dispatch(setOffersDataLoadingStatus(false));
     }
   }, [dispatch, offer?.id]);
   const currentOffer = useAppSelector((state) => state.offers.currentOffer);

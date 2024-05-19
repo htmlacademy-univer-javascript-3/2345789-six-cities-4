@@ -43,8 +43,8 @@ export const fetchСommentsAction = createAsyncThunk<void, { id: string | undefi
 }>(
   'data/fetchComments',
   async ({ id }, {dispatch, extra: api}) => {
-    const {data} = await api.get<Comment[]>(APIRoutes.Comments.concat(`/${id}`));
     dispatch(setOffersDataLoadingStatus(true));
+    const {data} = await api.get<Comment[]>(APIRoutes.Comments.concat(`/${id}`));
     dispatch(updateCurrentComments(data));
     dispatch(setOffersDataLoadingStatus(false));
   },
