@@ -1,7 +1,7 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 
-export function withHistory(component: JSX.Element) {
+export function mockComponent(component: JSX.Element) {
   return (
     <BrowserRouter>
       <HelmetProvider>
