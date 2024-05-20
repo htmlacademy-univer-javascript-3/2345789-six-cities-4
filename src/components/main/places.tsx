@@ -1,6 +1,6 @@
 import Filters from './filters';
 import Map from '../map/map';
-import CardsList from '../card/cardsList';
+import CardsList from '../card/cards-list';
 import { Offer } from '../../types/offers';
 import { useState } from 'react';
 import { filters } from '../../const';

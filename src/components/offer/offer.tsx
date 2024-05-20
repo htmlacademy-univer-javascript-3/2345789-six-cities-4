@@ -1,4 +1,4 @@
-import CardsList from '../card/cardsList';
+import CardsList from '../card/cards-list';
 import Header from '../header';
 import { Offer } from '../../types/offers';
 import {useParams} from 'react-router-dom';

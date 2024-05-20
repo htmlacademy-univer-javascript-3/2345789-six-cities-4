@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import LoadingScreen from '../../components/loading-screen';
+import LoadingScreen from '../../../components/loading-screen';
 
 describe('Component: Loading screen', () => {
   it('should render correct', () => {

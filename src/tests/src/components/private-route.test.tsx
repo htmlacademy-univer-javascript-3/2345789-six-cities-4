@@ -4,12 +4,12 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import PrivateRoute from '../../components/private-route';
-import { AuthorizationStatus } from '../../const';
-import { State } from '../../types/state';
+import PrivateRoute from '../../../components/private-route';
+import { AuthorizationStatus } from '../../../const';
+import { State } from '../../../types/state';
 import { Action } from 'redux';
-import { AppThunkDispatch } from '../utils';
-import { createAPI } from '../../api/api';
+import { AppThunkDispatch } from '../../utils';
+import { createAPI } from '../../../api/api';
 
 describe('Component: PrivateRoute', () => {
   const axios = createAPI();
@@ -41,7 +41,7 @@ describe('Component: PrivateRoute', () => {
       </Provider>
     );
 
-    expect(screen.getByText('Loading ...')).toBeInTheDocument(); // Adjust this to whatever LoadingScreen renders
+    expect(screen.getByText('Loading ...')).toBeInTheDocument();
   });
 
   it('should render login when user is not authorized', () => {

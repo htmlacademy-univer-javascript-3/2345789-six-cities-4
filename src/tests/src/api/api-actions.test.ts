@@ -1,17 +1,17 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { createAPI } from '../../api/api';
+import { createAPI } from '../../../api/api';
 import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
 import { Action } from 'redux';
-import { AppThunkDispatch, extractActionsTypes } from '../utils';
-import { State } from '../../types/state';
+import { AppThunkDispatch, extractActionsTypes } from '../../utils';
+import { State } from '../../../types/state';
 import { fetchOffersAction, fetchSingleOfferAction, fetchСommentsAction, postCommentAction,
-  checkAuthAction, loginAction, logoutAction, fetchFavorites, updateFavorite } from '../../api/api-actions';
-import { APIRoutes } from '../../api/const';
-import { AuthData, CommentData, FavoritesData, FavoritesStatus } from '../../const';
-import * as tokenStorage from '../../token';
+  checkAuthAction, loginAction, logoutAction, fetchFavorites, updateFavorite } from '../../../api/api-actions';
+import { APIRoutes } from '../../../api/const';
+import { AuthData, CommentData, FavoritesData, FavoritesStatus } from '../../../const';
+import * as tokenStorage from '../../../token';
 import { setUserDataLoadingStatus, requireAuthorization, updateUserLogin, setOffersDataLoadingStatus,
-  updateOffers, updateCurrentComments, updateCurrentOffer, setFavoritesDataLoadingStatus, updateFavorites } from '../../store/action';
+  updateOffers, updateCurrentComments, updateCurrentOffer, setFavoritesDataLoadingStatus, updateFavorites } from '../../../store/action';
 
 describe('Async actions', () => {
   const axios = createAPI();
