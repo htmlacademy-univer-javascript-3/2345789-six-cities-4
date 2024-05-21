@@ -4,28 +4,33 @@
   
   tasks:
 
-    - name: Install NodeJS
+    - name: Install Nginx
       ansible.builtin.apt:
-        name: nodejs
+        name: nginx
         state: latest
     
-    - name: Instal NPM
-      ansible.builtin.apt:
-        name: npm
-        state: latest
+    - name: Copy Production Dist
+      ansible.builtin.copy:
+        src: ~/2345789-six-cities-4/dist.tar.gz
+        dest: /var/www/html/
+        owner: root
+        group: root
+        mode: '0644'
 
-    - name: Clone project
-      ansible.builtin.shell:
-        chdir: /home
-        cmd: "git clone https://github.com/s1ckoleg/2345789-six-cities-4.git"
+    - name: Copy Nginx Config
+      ansible.builtin.copy:
+        src: ~/2345789-six-cities-4/deploy/six-cities.conf
+        dest: /etc/nginx/sites-enabled/
+        owner: root
+        group: root
+        mode: '0644'
 
-    - name: Install Server
+    - name: Unpack Dist
       ansible.builtin.shell:
-        chdir: /home/2345789-six-cities-4
-        cmd: "npm install -g serve"
+        chdir: /var/www/html/
+        cmd: "rm -rf assets/ css/ fonts/ img/ && tar -xzf dist.tar.gz --warning=no-unknown-keyword && mv ./dist/* . && rm -rf dist/ && rm dist.tar.gz"
 
-    - name: Server Build
+    - name: Restart Nginx
       ansible.builtin.shell:
-        chdir: /home/2345789-six-cities-4
-        cmd: "serve -s build -l 80 &"
+        cmd: "systemctl restart nginx" 
       
