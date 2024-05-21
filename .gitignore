@@ -11,6 +11,7 @@
 # production
 /dist
 /deploy
+*.tar.gz
 # misc
 Thumbs.db
 .DS_Store
