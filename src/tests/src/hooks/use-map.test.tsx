@@ -5,7 +5,6 @@ import { Map, TileLayer } from 'leaflet';
 import useMap from '../../../hooks/use-map';
 import { City } from '../../../types/offers';
 
-// Mock Leaflet Map and TileLayer
 vi.mock('leaflet', () => ({
   Map: vi.fn(() => ({
     setView: vi.fn(),
