@@ -1,0 +1,31 @@
+- name: Deploy Six Cities
+  hosts: all
+  become: yes
+  
+  tasks:
+
+    - name: Install NodeJS
+      ansible.builtin.apt:
+        name: nodejs
+        state: latest
+    
+    - name: Instal NPM
+      ansible.builtin.apt:
+        name: npm
+        state: latest
+
+    - name: Clone project
+      ansible.builtin.shell:
+        chdir: /home
+        cmd: "git clone https://github.com/s1ckoleg/2345789-six-cities-4.git"
+
+    - name: Install Server
+      ansible.builtin.shell:
+        chdir: /home/2345789-six-cities-4
+        cmd: "npm install -g serve"
+
+    - name: Server Build
+      ansible.builtin.shell:
+        chdir: /home/2345789-six-cities-4
+        cmd: "serve -s build -l 80 &"
+      
