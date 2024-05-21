@@ -39,9 +39,7 @@ function Places({city, cityOffers}: PlacesProps): JSX.Element {
         </div>
       </section>
       <div className="cities__right-section">
-        <section className="cities__map map">
-          <Map city={cityOffers[0].city} points={points} selectedPoint={selectedPoint} height='800px' width='515px' />
-        </section>
+        <Map city={cityOffers[0].city} points={points} selectedPoint={selectedPoint} className={'cities__map map'} />
       </div>
     </div>
   );

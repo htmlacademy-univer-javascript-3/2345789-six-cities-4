@@ -23,7 +23,7 @@ describe('Filters component', () => {
     const highToLowFilter = screen.getByText(filters.HIGH_TO_LOW);
     fireEvent.click(highToLowFilter);
     expect(screen.getAllByText(filters.HIGH_TO_LOW).length).toBe(2);
-    expect(highToLowFilter).toHaveClass('placesoption--active');
+    expect(highToLowFilter).toHaveClass('places__option--active');
   });
 
   it('should switch active class correctly when another filter is clicked', () => {
@@ -32,11 +32,11 @@ describe('Filters component', () => {
 
     const topRatedFilter = screen.getByText(filters.TOP_RATED);
     fireEvent.click(topRatedFilter);
-    expect(topRatedFilter).toHaveClass('placesoption--active');
+    expect(topRatedFilter).toHaveClass('places__option--active');
 
     const lowToHighFilter = screen.getByText(filters.LOW_TO_HIGH);
     fireEvent.click(lowToHighFilter);
-    expect(lowToHighFilter).toHaveClass('placesoption--active');
-    expect(topRatedFilter).not.toHaveClass('placesoption--active');
+    expect(lowToHighFilter).toHaveClass('places__option--active');
+    expect(topRatedFilter).not.toHaveClass('places__option--active');
   });
 });

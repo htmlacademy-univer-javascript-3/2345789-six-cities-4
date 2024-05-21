@@ -203,8 +203,7 @@ function OfferScreen({ offers }: OfferProps): JSX.Element {
               city={currentOffer?.city}
               points={points}
               selectedPoint={selectedPoint}
-              height="600px"
-              width="1200px"
+              className={'offer__map map'}
             />
           </section>
         </section>

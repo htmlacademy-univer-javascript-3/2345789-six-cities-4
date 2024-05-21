@@ -33,16 +33,10 @@ describe('Map component', () => {
   const selectedPoint = points[0];
 
   it('should render the map container with correct dimensions', () => {
-    render(<Map city={city} points={points} selectedPoint={selectedPoint} height="500px" width="100%" />);
+    render(<Map city={city} points={points} selectedPoint={selectedPoint} className={'offer'}/>);
 
     const mapContainerElement = screen.getByTestId('leaflet');
 
     expect(mapContainerElement).toBeInTheDocument();
-    expect(mapContainerElement).toHaveStyle({
-      height: '500px',
-      width: '100%',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    });
   });
 });

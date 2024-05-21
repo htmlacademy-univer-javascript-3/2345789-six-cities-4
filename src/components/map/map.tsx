@@ -10,8 +10,7 @@ type MapProps = {
 city: City;
 points: Points;
 selectedPoint: Point | undefined;
-height: string;
-width: string;
+className: string;
 };
 
 const defaultCustomIcon = new Icon({
@@ -55,7 +54,9 @@ function Map(props: MapProps): JSX.Element {
     }
   }, [map, points, selectedPoint]);
 
-  return <div data-testid='leaflet' style={{height: props.height, width: props.width, marginLeft: 'auto', marginRight: 'auto'}} ref={mapRef}></div>;
+  return (
+    <section data-testid='leaflet' className={props.className} ref={mapRef} />
+  );
 }
 
 export default Map;
