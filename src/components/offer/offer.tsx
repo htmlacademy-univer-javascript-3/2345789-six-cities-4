@@ -1,12 +1,16 @@
-import CardsList from '../card/cardsList';
+import CardsList from '../card/cards-list';
 import Header from '../header';
 import { Offer } from '../../types/offers';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Error404 from '../404';
 import ReviewForm from './review-form';
 import ReviewsList from './review-list';
 import Map from '../map/map';
-import { fetchSingleOfferAction, fetchСommentsAction, updateFavorite } from '../../api/api-actions';
+import {
+  fetchSingleOfferAction,
+  fetchСommentsAction,
+  updateFavorite,
+} from '../../api/api-actions';
 import LoadingScreen from '../loading-screen';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useEffect } from 'react';
@@ -16,19 +20,23 @@ import { updateFavoritesCount } from '../../store/action';
 import { setOffersDataLoadingStatus } from '../../store/action';
 
 type OfferProps = {
-    offers: Offer[];
-}
+  offers: Offer[];
+};
 
-function OfferScreen({offers}: OfferProps): JSX.Element {
-  const isAuthorized = useAppSelector((state) => state.user.authorizationStatus);
+function OfferScreen({ offers }: OfferProps): JSX.Element {
+  const isAuthorized = useAppSelector(
+    (state) => state.user.authorizationStatus
+  );
   const params = useParams();
   const offer = offers.find((o) => o.id === params.id);
-  const favoritesCounter = useAppSelector((state) => state.favorite.favoritesCounter);
+  const favoritesCounter = useAppSelector(
+    (state) => state.favorite.favoritesCounter
+  );
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (offer?.id) {
-      dispatch(fetchSingleOfferAction({id: offer.id}));
-      dispatch(fetchСommentsAction({id: offer.id}));
+      dispatch(fetchSingleOfferAction({ id: offer.id }));
+      dispatch(fetchСommentsAction({ id: offer.id }));
       dispatch(setOffersDataLoadingStatus(false));
     }
   }, [dispatch, offer?.id]);
@@ -36,24 +44,30 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
   const [isFavorite, setIsFavorite] = useState(offer?.isFavorite);
   function handleIsFavorite() {
     if (isFavorite) {
-      dispatch(updateFavorite({
-        id: currentOffer?.id,
-        status: FavoritesStatus.DELETE
-      }));
+      dispatch(
+        updateFavorite({
+          id: currentOffer?.id,
+          status: FavoritesStatus.DELETE,
+        })
+      );
       setIsFavorite(false);
       dispatch(updateFavoritesCount(favoritesCounter - 1));
     } else {
-      dispatch(updateFavorite({
-        id: currentOffer?.id,
-        status: FavoritesStatus.ADD
-      }));
+      dispatch(
+        updateFavorite({
+          id: currentOffer?.id,
+          status: FavoritesStatus.ADD,
+        })
+      );
       setIsFavorite(true);
       dispatch(updateFavoritesCount(favoritesCounter + 1));
     }
   }
-  const currentComments = useAppSelector((state) => state.offers.currentComments);
+  const currentComments = useAppSelector(
+    (state) => state.offers.currentComments
+  );
   if (!offer) {
-    return (<Error404 />);
+    return <Error404 />;
   }
   if (!currentOffer) {
     return <LoadingScreen />;
@@ -63,7 +77,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
     id: item.id,
     title: item.title,
     lat: item.location.latitude,
-    lng: item.location.longitude
+    lng: item.location.longitude,
   }));
   const selectedPoint = points.find((o) => o.title === offer.title);
   const otherOffers = offers.filter((e) => e !== offer);
@@ -72,15 +86,17 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
     const photoAlt = `Photo studio ${i}`;
     return (
       <div className="offer__image-wrapper" key={`${photoAlt}`}>
-        <img className="offer__image" src={item} alt={photoAlt} ></img>
+        <img className="offer__image" src={item} alt={photoAlt}></img>
       </div>
     );
   });
 
   const features = [
-    currentOffer?.type.toLowerCase().replace(/\w/, (firstLetter) => firstLetter.toUpperCase()),
+    currentOffer?.type
+      .toLowerCase()
+      .replace(/\w/, (firstLetter) => firstLetter.toUpperCase()),
     `${currentOffer?.bedrooms} Bedrooms`,
-    `Max ${currentOffer?.maxAdults} adults`
+    `Max ${currentOffer?.maxAdults} adults`,
   ];
 
   const offerFeatures = features.map((item) => (
@@ -98,7 +114,15 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
   let authorizedSection;
   if (isAuthorized === AuthorizationStatus.Auth) {
     authorizedSection = (
-      <button className={isFavorite ? 'offer__bookmark-button offer__bookmark-button--active button' : 'offer__bookmark-button button'} type="button" onClick={handleIsFavorite}>
+      <button
+        className={
+          isFavorite
+            ? 'offer__bookmark-button offer__bookmark-button--active button'
+            : 'offer__bookmark-button button'
+        }
+        type="button"
+        onClick={handleIsFavorite}
+      >
         <svg className="offer__bookmark-icon" width="31" height="33">
           <use href="#icon-bookmark"></use>
         </svg>
@@ -114,9 +138,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
-            <div className="offer__gallery">
-              {offerImages}
-            </div>
+            <div className="offer__gallery">{offerImages}</div>
           </div>
 
           <div className="offer__container container">
@@ -125,36 +147,39 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
                 <span>{currentOffer?.isPremium ? 'Premium' : 'Economy'}</span>
               </div>
               <div className="offer__name-wrapper">
-                <h1 className="offer__name">
-                  {currentOffer?.title}
-                </h1>
+                <h1 className="offer__name">{currentOffer?.title}</h1>
                 {authorizedSection}
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: '80%'}}></span>
+                  <span style={{ width: '80%' }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">{offer.rating}</span>
+                <span className="offer__rating-value rating__value">
+                  {offer.rating}
+                </span>
               </div>
-              <ul className="offer__features">
-                {offerFeatures}
-              </ul>
+              <ul className="offer__features">{offerFeatures}</ul>
               <div className="offer__price">
                 <b className="offer__price-value">&euro;{`${offer.price}`}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
-                  {offerInside}
-                </ul>
+                <ul className="offer__inside-list">{offerInside}</ul>
               </div>
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>
                 <div className="offer__host-user user">
                   <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="offer__avatar user__avatar" src={currentOffer?.host.avatarUrl} width="74" height="74" alt="Host avatar"></img>
+                    <img
+                      className="offer__avatar user__avatar"
+                      src={currentOffer?.host.avatarUrl}
+                      width="74"
+                      height="74"
+                      alt="Host avatar"
+                    >
+                    </img>
                   </div>
                   <span className="offer__user-name">
                     {currentOffer?.host.name}
@@ -164,9 +189,7 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
                   </span>
                 </div>
                 <div className="offer__description">
-                  <p className="offer__text">
-                    {currentOffer?.description}
-                  </p>
+                  <p className="offer__text">{currentOffer?.description}</p>
                 </div>
               </div>
               <section className="offer__reviews reviews">
@@ -176,14 +199,32 @@ function OfferScreen({offers}: OfferProps): JSX.Element {
             </div>
           </div>
           <section className="offer__map map">
-            <Map city={currentOffer?.city} points={points} selectedPoint={selectedPoint} height='600px' width='1200px' />
+            <Map
+              city={currentOffer?.city}
+              points={points}
+              selectedPoint={selectedPoint}
+              height="600px"
+              width="1200px"
+            />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">
+              Other places in the neighbourhood
+            </h2>
             <div className="near-places__list places__list">
-              <CardsList cards={otherOffers.map((item) => ({id: item.id, price: item.price, rating: item.rating, isFavorite: item.isFavorite, roomName: item.title, roomType: item.type, image: item.previewImage}))} />
+              <CardsList
+                cards={otherOffers.map((item) => ({
+                  id: item.id,
+                  price: item.price,
+                  rating: item.rating,
+                  isFavorite: item.isFavorite,
+                  roomName: item.title,
+                  roomType: item.type,
+                  image: item.previewImage,
+                }))}
+              />
             </div>
           </section>
         </div>

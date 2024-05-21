@@ -44,11 +44,11 @@ function LoginScreen(): JSX.Element {
             <form className="login__form form" action="" onSubmit={handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden" htmlFor="email">E-mail</label>
-                <input ref={loginRef} className="login__input form__input" type="email" name="email" placeholder="Email" id="email" required></input>
+                <input ref={loginRef} className="login__input form__input" type="email" name="email" placeholder="Email" id="email" data-testid="loginElement" required></input>
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden" htmlFor="password">Password</label>
-                <input ref={passwordRef} className="login__input form__input" type="password" name="password" id="password" placeholder="Password" required></input>
+                <input ref={passwordRef} className="login__input form__input" type="password" name="password" id="password" placeholder="Password" data-testid="passwordElement" required></input>
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
