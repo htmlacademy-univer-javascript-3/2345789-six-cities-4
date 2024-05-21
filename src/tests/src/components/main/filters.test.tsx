@@ -30,7 +30,6 @@ describe('Filters component', () => {
     const mockHandleSort = vi.fn();
     render(<Filters handleSort={mockHandleSort} />);
 
-
     const topRatedFilter = screen.getByText(filters.TOP_RATED);
     fireEvent.click(topRatedFilter);
     expect(topRatedFilter).toHaveClass('placesoption--active');

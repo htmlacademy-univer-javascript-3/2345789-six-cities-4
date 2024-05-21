@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import useMap from './use-map';
+import useMap from '../../hooks/use-map';
 import {Points, Point} from '../../types/map';
 import { City } from '../../types/offers';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
@@ -55,7 +55,7 @@ function Map(props: MapProps): JSX.Element {
     }
   }, [map, points, selectedPoint]);
 
-  return <div style={{height: props.height, width: props.width, marginLeft: 'auto', marginRight: 'auto'}} ref={mapRef}></div>;
+  return <div data-testid='leaflet' style={{height: props.height, width: props.width, marginLeft: 'auto', marginRight: 'auto'}} ref={mapRef}></div>;
 }
 
 export default Map;

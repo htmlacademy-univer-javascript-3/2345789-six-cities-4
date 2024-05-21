@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import FavoriteScreen from '../../../../components/favorite/favorites';
+import FavoriteScreen from '../../../../components/favorite/favorite';
 import { offers } from '../../../mock-data';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { createAPI } from '../../../../api/api';
@@ -14,23 +14,28 @@ import { MemoryRouter } from 'react-router-dom';
 describe('Component: FavoriteCardArticle', () => {
   const axios = createAPI();
   const middleware = [thunk.withExtraArgument(axios)];
-  const mockStoreCreator = configureMockStore<State, Action<string>, AppThunkDispatch>(middleware);
+  const mockStoreCreator = configureMockStore<
+    State,
+    Action<string>,
+    AppThunkDispatch
+  >(middleware);
 
   it('should render correct', () => {
     const store = mockStoreCreator({
       offers: {
         city: 'Paris',
-        cityOffers: offers
+        cityOffers: offers,
       },
       user: {
-        authorizationStatus: AuthorizationStatus.Unknown
+        authorizationStatus: AuthorizationStatus.Unknown,
       },
       favorite: {
         favoritesCounter: 1,
-        favorites: offers
-      }});
+        favorites: offers,
+      },
+    });
     render(
-      <Provider store={ store } >
+      <Provider store={store}>
         <MemoryRouter initialEntries={['/']}>
           <FavoriteScreen />
         </MemoryRouter>
@@ -46,17 +51,18 @@ describe('Component: FavoriteCardArticle', () => {
     const store = mockStoreCreator({
       offers: {
         city: 'Paris',
-        cityOffers: []
+        cityOffers: [],
       },
       user: {
-        authorizationStatus: AuthorizationStatus.Unknown
+        authorizationStatus: AuthorizationStatus.Unknown,
       },
       favorite: {
         favoritesCounter: 0,
-        favorites: []
-      }});
+        favorites: [],
+      },
+    });
     render(
-      <Provider store={ store } >
+      <Provider store={store}>
         <MemoryRouter initialEntries={['/']}>
           <FavoriteScreen />
         </MemoryRouter>
