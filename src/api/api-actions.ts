@@ -91,12 +91,17 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login, password}, {dispatch, extra: api}) => {
-    dispatch(setUserDataLoadingStatus(true));
-    const {data: {token, email}} = await api.post<UserData>(APIRoutes.UserLogin, {email: login, password});
-    dispatch(updateUserLogin(email));
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(setUserDataLoadingStatus(false));
+    try {
+      dispatch(setUserDataLoadingStatus(true));
+      const {data: {token, email}} = await api.post<UserData>(APIRoutes.UserLogin, {email: login, password});
+      dispatch(updateUserLogin(email));
+      saveToken(token);
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    } catch {
+      dispatch(setUserDataLoadingStatus(false));
+    } finally {
+      dispatch(setUserDataLoadingStatus(false));
+    }
   },
 );
 
