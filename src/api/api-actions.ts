@@ -48,10 +48,15 @@ export const fetchСommentsAction = createAsyncThunk<void, { id: string | undefi
 }>(
   'data/fetchComments',
   async ({ id }, {dispatch, extra: api}) => {
-    dispatch(setOffersDataLoadingStatus(true));
-    const {data} = await api.get<Comment[]>(APIRoutes.Comments.concat(`/${id}`));
-    dispatch(updateCurrentComments(data));
-    dispatch(setOffersDataLoadingStatus(false));
+    try {
+      dispatch(setOffersDataLoadingStatus(true));
+      const {data} = await api.get<Comment[]>(APIRoutes.Comments.concat(`/${id}`));
+      dispatch(updateCurrentComments(data));
+    } catch {
+      dispatch(updateCurrentComments([]));
+    } finally {
+      dispatch(setOffersDataLoadingStatus(false));
+    }
   },
 );
 
@@ -103,6 +108,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
       saveToken(token);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
     } catch {
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
       dispatch(setUserDataLoadingStatus(false));
     } finally {
       dispatch(setUserDataLoadingStatus(false));
