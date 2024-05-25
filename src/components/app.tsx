@@ -12,7 +12,6 @@ function App(): JSX.Element {
   const isOffersDataLoading = useAppSelector(
     (state) => state.offers.isOffersDataLoading
   );
-  // const offers = useAppSelector((state) => state.offers);
   const cityOffers = useAppSelector((state) => state.offers.cityOffers);
   if (isOffersDataLoading) {
     return <LoadingScreen />;

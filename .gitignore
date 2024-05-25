@@ -10,7 +10,6 @@
 
 # production
 /dist
-/deploy
 *.tar.gz
 # misc
 Thumbs.db
