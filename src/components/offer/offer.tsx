@@ -73,14 +73,16 @@ function OfferScreen({ offers }: OfferProps): JSX.Element {
     return <LoadingScreen />;
   }
 
-  const points = offers.map((item) => ({
+  const otherOffers = offers.filter((e) => e !== offer);
+  const firstThreeOffers = otherOffers.slice(0, 3);
+  const points = firstThreeOffers.concat(offer).map((item) => ({
     id: item.id,
     title: item.title,
     lat: item.location.latitude,
     lng: item.location.longitude,
   }));
   const selectedPoint = points.find((o) => o.title === offer.title);
-  const otherOffers = offers.filter((e) => e !== offer);
+
 
   const offerImages = currentOffer?.images.map((item, i) => {
     const photoAlt = `Photo studio ${i}`;
@@ -214,7 +216,7 @@ function OfferScreen({ offers }: OfferProps): JSX.Element {
             </h2>
             <div className="near-places__list places__list">
               <CardsList
-                cards={otherOffers.map((item) => ({
+                cards={firstThreeOffers.map((item) => ({
                   id: item.id,
                   price: item.price,
                   rating: item.rating,
