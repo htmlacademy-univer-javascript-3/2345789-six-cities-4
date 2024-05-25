@@ -2,7 +2,8 @@ import { FormEvent, useRef } from 'react';
 import { useAppDispatch } from '../hooks';
 import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../api/api-actions';
-
+import { useAppSelector } from '../hooks';
+import { AuthorizationStatus } from '../const';
 
 function LoginScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -22,6 +23,11 @@ function LoginScreen(): JSX.Element {
       navigate('/');
     }
   };
+
+  const isAuthorized = useAppSelector((state) => state.user.authorizationStatus);
+  if (isAuthorized === AuthorizationStatus.Auth) {
+    navigate('/');
+  }
 
   return (
     <div className="page page--gray page--login">
