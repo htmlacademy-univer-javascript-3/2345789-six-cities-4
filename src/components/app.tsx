@@ -12,7 +12,7 @@ function App(): JSX.Element {
   const isOffersDataLoading = useAppSelector(
     (state) => state.offers.isOffersDataLoading
   );
-  const cityOffers = useAppSelector((state) => state.offers.cityOffers);
+  const offers = useAppSelector((state) => state.offers.offers);
   if (isOffersDataLoading) {
     return <LoadingScreen />;
   }
@@ -31,7 +31,7 @@ function App(): JSX.Element {
             }
           />
           <Route path="offer/">
-            <Route path=":id" element={<OfferScreen offers={cityOffers} />} />
+            <Route path=":id" element={<OfferScreen offers={offers} />} />
           </Route>
           <Route path="*" element={<Error404 />} />
         </Route>
