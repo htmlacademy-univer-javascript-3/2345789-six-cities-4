@@ -95,8 +95,8 @@ function OfferScreen({ offers }: OfferProps): JSX.Element {
     currentOffer?.type
       .toLowerCase()
       .replace(/\w/, (firstLetter) => firstLetter.toUpperCase()),
-    `${currentOffer?.bedrooms} Bedrooms`,
-    `Max ${currentOffer?.maxAdults} adults`,
+    `${currentOffer?.bedrooms} ${currentOffer?.bedrooms > 1 ? 'Bedrooms' : 'Bedroom' }`,
+    `Max ${currentOffer?.maxAdults} ${currentOffer?.maxAdults > 1 ? 'adults' : 'adult' }`,
   ];
 
   const offerFeatures = features.map((item) => (
